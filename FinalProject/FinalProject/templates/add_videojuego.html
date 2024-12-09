@@ -1,0 +1,15 @@
+{% extends 'base.html' %}  <!-- Extiende la plantilla base.html, lo que significa que hereda la estructura de la página principal -->
+{% load static %}  <!-- Carga las funciones de Django necesarias para trabajar con archivos estáticos -->
+
+
+{% block content %}  <!-- Inicia el bloque de contenido que será reemplazado en la plantilla base -->
+
+<h1>Agregar Videojuego</h1>  <!-- Título de la página para agregar un nuevo videojuego -->
+
+<form method="POST" enctype="multipart/form-data">  <!-- Formulario con el método POST para enviar los datos, permite cargar archivos -->
+    {% csrf_token %}  <!-- Etiqueta de seguridad para prevenir ataques CSRF -->
+    {{ form.as_p }}  <!-- Muestra los campos del formulario como párrafos -->
+    <button type="submit" class="btn">Guardar</button>  <!-- Botón para enviar el formulario -->
+</form>
+
+{% endblock %}  <!-- Cierra el bloque de contenido -->

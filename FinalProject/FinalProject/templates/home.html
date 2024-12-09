@@ -1,0 +1,57 @@
+{% extends 'base.html' %}  <!-- Extiende la plantilla base para reutilizar el diseño general del sitio -->
+{% load static %}  <!-- Carga las funciones de Django necesarias para trabajar con archivos estáticos -->
+<link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Enlaza el archivo de estilos CSS estático -->
+
+{% block content %}  <!-- Inicia el bloque de contenido específico para esta página -->
+<h1>Lista de Videojuegos</h1>
+
+<!-- Contenedor donde se mostrarán los videojuegos -->
+<div id="videojuegos-list">
+    <!-- Bucle para mostrar todos los videojuegos en la base de datos -->
+    {% for videojuego in videojuegos %}
+        <div class="container">
+            <h2>{{ videojuego.nombre }}</h2>  <!-- Muestra el nombre del videojuego -->
+            <img src="{{ videojuego.imagen.url }}" alt="{{ videojuego.nombre }}" width="200">  <!-- Muestra la imagen del videojuego -->
+            <p>{{ videojuego.descripcion }}</p>  <!-- Muestra la descripción del videojuego -->
+            
+            <!-- Enlace para editar el videojuego, que redirige a la página de edición -->
+            <a class="link" href="{% url 'edit_videojuego' videojuego.id %}">Editar</a>
+            
+            <!-- Botón para eliminar el videojuego, que activará un evento de AJAX -->
+            <button class="btn delete-btn" data-id="{{ videojuego.id }}">Eliminar</button>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Enlace para agregar un nuevo videojuego -->
+<a class="btn" href="{% url 'add_videojuego' %}">Agregar Videojuego</a>
+
+<!-- Enlace a la biblioteca jQuery, necesario para ejecutar el código AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // Función que se activa al hacer clic en el botón de eliminar
+    $(".delete-btn").click(function(){
+        var videojuegoId = $(this).data("id");  // Obtiene el ID del videojuego
+        if(confirm("¿Estás seguro de que deseas eliminar este videojuego?")) {  // Confirma si el usuario realmente desea eliminarlo
+            $.ajax({
+                url: "/delete_videojuego/" + videojuegoId + "/",  // URL para hacer la solicitud de eliminación
+                type: "POST",  // Método HTTP
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',  // Token CSRF para prevenir ataques
+                    'id': videojuegoId  // Enviar el ID del videojuego a eliminar
+                },
+                success: function(response) {
+                    location.reload();  // Recarga la página si la eliminación fue exitosa
+                },
+                error: function(error) {
+                    alert("Ocurrió un error al intentar eliminar el videojuego.");  // Muestra un mensaje si hay un error
+                }
+            });
+        }
+    });
+});
+</script>
+
+{% endblock %}  <!-- Fin del bloque de contenido específico para esta página -->

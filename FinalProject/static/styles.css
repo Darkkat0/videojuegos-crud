@@ -1,0 +1,91 @@
+/* styles.css */
+
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif; /* Fuente base de la página */
+    margin: 0; /* Elimina márgenes */
+    padding: 0; /* Elimina relleno */
+    display: flex; /* Usa Flexbox para centrar los elementos */
+    justify-content: space-around; /* Distribuye elementos horizontalmente con espacio */
+    align-items: center; /* Centra los elementos verticalmente */
+    height: 100vh; /* Ajusta la altura al 100% del viewport */
+    background: linear-gradient(135deg, #2193b0, #6dd5ed); /* Fondo degradado diagonal */
+}
+
+/* Contenedor principal */
+.container {
+    text-align: center; /* Centra el texto dentro del contenedor */
+    background: white; /* Fondo blanco para el contenedor */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    width: 90%; /* Toma el 90% del ancho del viewport */
+    max-width: 400px; /* Limita el ancho máximo a 400px */
+}
+
+/* Estilo para los encabezados */
+h1 {
+    font-size: 24px; /* Tamaño de fuente */
+    margin-bottom: 20px; /* Espaciado inferior */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para el formulario */
+form {
+    margin-top: 15px; /* Espaciado superior */
+}
+
+/* Botones del formulario */
+form .btn {
+    background-color: #2193b0; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave al cambiar de color */
+    width: 100%; /* Botón ocupa todo el ancho */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+/* Efecto hover en los botones */
+form .btn:hover {
+    background-color: #1a7390; /* Color de fondo más oscuro */
+}
+
+/* Estilo para los párrafos */
+p {
+    margin-top: 20px; /* Espaciado superior */
+    font-size: 14px; /* Tamaño de fuente */
+    color: #666; /* Color de texto */
+}
+
+/* Enlaces dentro de los párrafos */
+p .link {
+    color: #2193b0; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Efecto hover en los enlaces */
+p .link:hover {
+    text-decoration: underline; /* Subraya el texto al pasar el mouse */
+}
+
+/* Estilos para los mensajes de éxito o error */
+.messages {
+    list-style-type: none; /* Sin viñetas */
+    padding: 0; /* Sin relleno */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Estilo para cada mensaje */
+.message {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espaciado inferior */
+    font-size: 14px; /* Tamaño de fuente */
+}

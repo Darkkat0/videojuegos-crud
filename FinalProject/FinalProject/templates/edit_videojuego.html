@@ -1,0 +1,18 @@
+{% extends 'base.html' %}  <!-- Extiende la plantilla base para reutilizar el diseño general del sitio -->
+{% load static %}  <!-- Carga las funciones de Django necesarias para trabajar con archivos estáticos -->
+
+{% block content %}  <!-- Inicia el bloque de contenido específico para esta página -->
+<h1>Editar Videojuego: {{ videojuego.nombre }}</h1>  <!-- Título de la página con el nombre del videojuego que se está editando -->
+
+<!-- Formulario para editar un videojuego -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}  <!-- Token CSRF para prevenir ataques de falsificación de solicitudes -->
+    
+    <!-- Mostrar los campos del formulario con los datos actuales del videojuego -->
+    {{ form.as_p }}  
+
+    <!-- Botón para enviar el formulario y actualizar los datos del videojuego -->
+    <button type="submit" class="btn">Actualizar</button>
+</form>
+
+{% endblock %}  <!-- Fin del bloque de contenido específico para esta página -->

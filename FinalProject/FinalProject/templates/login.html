@@ -1,0 +1,49 @@
+{% load static %}  <!-- Carga las funciones y etiquetas necesarias para trabajar con archivos estáticos de Django -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración del documento HTML -->
+    <meta charset="UTF-8">  <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Hace que la página sea responsive -->
+    <title>Iniciar sesión</title>  <!-- Título que aparecerá en la pestaña del navegador -->
+    
+    <!-- Enlace al archivo de estilos CSS estático -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Imagen del encabezado (puedes usar un logo o imagen relacionada con el sitio) -->
+        <img src="https://img.freepik.com/vector-premium/plantilla-logo-equipo-e-sports-mando_23-2147833576.jpg?w=740" alt="Logo de equipo e-sports" width="150" height="150">
+
+        <div class="form-container">
+            <!-- Título del formulario -->
+            <h1>Iniciar sesión</h1>
+            
+            <!-- Mostrar mensajes de error o éxito -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="message">{{ message }}</li>  <!-- Muestra cada mensaje en la lista de mensajes -->
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <!-- Formulario de inicio de sesión -->
+            <form method="post">
+                {% csrf_token %}  <!-- Genera un token CSRF para prevenir ataques de falsificación de solicitudes entre sitios -->
+                
+                <!-- Renderiza el formulario, mostrando cada campo como un párrafo -->
+                {{ form.as_p }}
+                
+                <!-- Botón para enviar el formulario de inicio de sesión -->
+                <button type="submit" class="btn">Iniciar sesión</button>
+            </form>
+
+            <!-- Enlace al registro si el usuario aún no tiene cuenta -->
+            <p>¿No tienes cuenta? <a href="{% url 'signup' %}" class="link">Regístrate aquí</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
+

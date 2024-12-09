@@ -1,0 +1,40 @@
+{% load static %}  <!-- Carga las funciones de Django necesarias para trabajar con archivos estáticos -->
+
+<!DOCTYPE html>
+<html lang="es">  <!-- Define el idioma de la página como español -->
+<head>
+    <meta charset="UTF-8">  <!-- Define la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Hace que la página sea responsiva en dispositivos móviles -->
+    <title>Gestión de Videojuegos</title>  <!-- Título de la página -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Enlaza el archivo CSS con la plantilla -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- Enlaza la librería de jQuery -->
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul>  <!-- Lista de navegación -->
+                <li><a href="{% url 'home' %}">Inicio</a></li>  <!-- Enlace a la página de inicio -->
+                <li><a href="{% url 'add_videojuego' %}">Agregar Videojuego</a></li>  <!-- Enlace para agregar un videojuego -->
+                {% if user.is_authenticated %}  <!-- Verifica si el usuario está autenticado -->
+                    <li><a href="{% url 'signup' %}">Cerrar sesión</a></li>  <!-- Enlace para cerrar sesión -->
+                {% else %}  <!-- Si el usuario no está autenticado -->
+                    <li><a href="{% url 'login' %}">Iniciar sesión</a></li>  <!-- Enlace para iniciar sesión -->
+                    <li><a href="{% url 'signup' %}">Registrarse</a></li>  <!-- Enlace para registrarse -->
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% block content %}  <!-- Bloque para que cada página pueda agregar su propio contenido -->
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Gestión de Videojuegos</p>  <!-- Pie de página con información de copyright -->
+    </footer>
+
+    <script src="{% static 'js/scripts.js' %}"></script>  <!-- Enlaza el archivo JavaScript para la funcionalidad de la página -->
+</body>
+</html>
